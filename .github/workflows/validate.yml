@@ -1,0 +1,32 @@
+name: Validate and Deploy Databricks Bundle (PR)
+
+on:
+  pull_request:
+    paths:
+      - "DAB_demo/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    environment: Dev
+    env:
+      DATABRICKS_AUTH_TYPE: github-oidc
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: databricks/setup-cli@main
+
+      - name: Validate
+        working-directory: ./DAB_demo
+        run: databricks bundle validate -t dev
+
+      - name: Plan (dry-run)
+        working-directory: ./databricks_asset_bundle
+        run: databricks bundle plan -t dev
