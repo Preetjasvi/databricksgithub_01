@@ -32,7 +32,7 @@ jobs:
     name: Validate bundle
     runs-on: ubuntu-latest
 
-    # Credentials at JOB level. A step-scoped env block applies only to that
+    # Credentials at JOB level1. A step-scoped env block applies only to that
     # step, which leaves every later step unauthenticated:
     #   Error: default auth: cannot configure default credentials
     env:
