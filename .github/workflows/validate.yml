@@ -2,9 +2,10 @@ name: Validate and Deploy Databricks Bundle (PR)
 
 on:
   pull_request:
-    paths:
-      - "DAB_demo/**"
-      - ".github/workflows/**"
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 permissions:
   contents: read
