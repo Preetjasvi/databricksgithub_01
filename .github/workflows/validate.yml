@@ -68,8 +68,8 @@ jobs:
       - name: Authenticate to Databricks
         run: |
           set -euo pipefail
-          if [ -z "${DATABRICKS_TOKEN}" ]; then
-            echo "::error::DATABRICKS_PAT secret is empty or missing"
+          if [ -z "${DATABRICKS_CLIENT_ID}" ]; then
+            echo "::error::DATABRICKS_CLIENT_ID secret is empty or missing"
             exit 1
           fi
           databricks --version
