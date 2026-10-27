@@ -36,9 +36,9 @@ jobs:
     # step, which leaves every later step unauthenticated:
     #   Error: default auth: cannot configure default credentials
     env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      # Secret is DATABRICKS_PAT, but the CLI only reads DATABRICKS_TOKEN.
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_PAT }}
+      DATABRICKS_AUTH_TYPE: github-oidc
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
 
     steps:
       - name: Check out repository
