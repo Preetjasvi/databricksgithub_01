@@ -38,7 +38,7 @@ jobs:
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       # Secret is DATABRICKS_PAT, but the CLI only reads DATABRICKS_TOKEN.
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_PAT }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
 
     steps:
       - name: Check out repository
@@ -69,7 +69,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ -z "${DATABRICKS_TOKEN}" ]; then
-            echo "::error::DATABRICKS_PAT secret is empty or missing"
+            echo "::error::DATABRICKS_TOKEN secret is empty or missing"
             exit 1
           fi
           databricks --version
